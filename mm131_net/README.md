@@ -26,6 +26,3 @@ crawl using CrawlSpider
 get statistics
 
     scrapy crawl stats
-
-### LICENSE
-MIT 

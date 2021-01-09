@@ -49,5 +49,7 @@ class MainSpider(CrawlSpider):
                     f.write(response.body)
             except FileNotFoundError:
                 os.makedirs(os.path.dirname(path))
+                with open(path, 'wb') as f:
+                    f.write(response.body)
 
         thread_pool.submit(func)
