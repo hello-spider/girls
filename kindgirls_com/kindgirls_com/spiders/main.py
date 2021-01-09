@@ -39,7 +39,7 @@ class MainSpider(Spider):
         yield from response.follow_all(download_urls, callback=self.save_image)
 
     def parse_video_page(self, response):
-        video_url = response.css('video source[type=video\/mp4]::attr(src)')
+        video_url = response.css('video source[type=video\/mp4]::attr(src)').get()
         yield response.follow(video_url, callback=self.save_video)
 
     def save_file(self, file_path, content):

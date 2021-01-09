@@ -6,7 +6,7 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-SAVE_DIR = '/Volumes/T7/tmp/kindgirls_com_rules'
+SAVE_DIR = '/Volumes/T7/tmp/kindgirls_com'
 
 BOT_NAME = 'kindgirls_com'
 
@@ -18,7 +18,7 @@ NEWSPIDER_MODULE = 'kindgirls_com.spiders'
 #USER_AGENT = 'kindgirls_com (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
