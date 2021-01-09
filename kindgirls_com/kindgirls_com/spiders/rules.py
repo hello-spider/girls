@@ -11,9 +11,9 @@ class MainSpider(CrawlSpider):
     allowed_domains = ['kindgirls.com']
     rules = (
         Rule(LinkExtractor(allow=r'https://www\.kindgirls\.com/girls\.php?.*')),
-        Rule(LinkExtractor(allow=r'https://www\.kindgirls\.com/gallery-full\.php?.*'),
-             callback='parse_gallery_full'),
-        Rule(LinkExtractor(allow=r'.*?\.mp4'), callback='save_video'),
+        # Rule(LinkExtractor(allow=r'https://www\.kindgirls\.com/gallery-full\.php?.*'),
+        #      callback='parse_gallery_full'),
+        Rule(LinkExtractor(allow=r'.*?\.mp4', deny_extensions=[]), callback='save_video'),
         Rule(LinkExtractor(deny=r'.*?\.jpg')),
     )
 

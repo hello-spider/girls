@@ -8,4 +8,4 @@ Scrape 120786 photos in 8847 galleries and 359 videos on https://kindgirls.com
 
 ### TODO
 
-optimize download video(not buffer all in memory)
+optimize download video
