@@ -24,7 +24,7 @@ class MainSpider(CrawlSpider):
     )
     cat_str = '|'.join(categories)
 
-    image_page_le = LinkExtractor(allow=rf"^https://www.mm131.net/({cat_str})/\d+(_\d+)?.html$")
+    image_page_le = LinkExtractor(allow=rf"^https://www\.mm131\.net/({cat_str})/\d+(_\d+)?\.html$")
 
     rules = (
         Rule(image_page_le, callback='parse_image_page', follow=True),  # image page

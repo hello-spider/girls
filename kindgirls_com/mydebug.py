@@ -1,3 +1,3 @@
 from scrapy.cmdline import execute
 
-execute('scrapy crawl main'.split())
+execute('scrapy crawl rules'.split())

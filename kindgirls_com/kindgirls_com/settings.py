@@ -6,7 +6,7 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-SAVE_DIR = '/Volumes/T7/tmp/kindgirls_com'
+SAVE_DIR = '/Volumes/T7/tmp/kindgirls_com_rules'
 
 BOT_NAME = 'kindgirls_com'
 

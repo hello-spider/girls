@@ -1,33 +1,30 @@
 import os
+
+from scrapy.spiders import CrawlSpider
 from scrapy import Request
-from scrapy.spiders import Spider
+from scrapy.spiders import Rule
+from scrapy.linkextractors import LinkExtractor
 
 
-class MainSpider(Spider):
-    name = 'main'
+class MainSpider(CrawlSpider):
+    name = 'rules'
     allowed_domains = ['kindgirls.com']
+    rules = (
+        Rule(LinkExtractor(allow=r'https://www\.kindgirls\.com/girls\.php?.*')),
+        Rule(LinkExtractor(allow=r'https://www\.kindgirls\.com/gallery-full\.php?.*'),
+             callback='parse_gallery_full'),
+        Rule(LinkExtractor(allow=r'.*?\.mp4'), callback='save_video'),
+        Rule(LinkExtractor(deny=r'.*?\.jpg')),
+    )
 
     def start_requests(self):
-        # yield from self.start_initial_requests()
-        url = 'https://vids.kindgirls.com/dvv9/stella-cardo-2.mp4'
-        yield Request(url, callback=self.save_video)
+        yield from self.start_initial_requests()
 
     def start_initial_requests(self):
         initials = [chr(i) for i in range(ord('a'), ord('z') + 1)]
         urls = [f'https://www.kindgirls.com/girls.php?i={initial}'
                 for initial in initials]
-        yield from (Request(url, callback=self.parse_initial)
-                    for url in urls)
-
-    def parse_initial(self, response):
-        girl_urls = response.css('.model_list a::attr(href)').getall()
-        yield from response.follow_all(girl_urls, callback=self.parse_girl)
-
-    def parse_girl(self, response):
-        gallery_urls = response.css('.gal_list a::attr(href)').getall()
-        gallery_full_urls = [gallery_url.replace('gallery.php', 'gallery-full.php')
-                             for gallery_url in gallery_urls]
-        yield from response.follow_all(gallery_full_urls, callback=self.parse_gallery_full)
+        yield from (Request(url) for url in urls)
 
     def parse_gallery_full(self, response):
         img_urls = response.css('.gal_full img::attr(src)').getall()
